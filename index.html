@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;  
+        }
+        
+        html{
+            height: 100%; 
+        }
+        
+        ul, li{
+            list-style-type: none;
+        }
+
+        p, h1, h2, h3, h4, h5, h6{
+            overflow-wrap: break-word;
+        }
+
+        body{
+            width: 100%;
+            height: 100%; 
+            display: flex;
+            align-items: stretch;
+            flex-direction: column;
+            justify-content: flex-start;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased; 
+            background-image: url("img/Background 8bit.png");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            backdrop-filter: blur(5px);
+        }
+
+        #topmenu{
+            display: block;
+            list-style-type: none; 
+        }
+
+        #topmenu ul li a{
+            width : 20%;
+            display: inline;
+            float: left;
+            padding-bottom: 2vh;
+            border-radius: 2vw;
+            text-align: center;
+            aspect-ratio: 1 / 0.5;
+            color: white;
+            font-size: 9vw;
+            -webkit-text-stroke: 0.2vw white;
+        }
+
+        #content{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            padding: 0% 10% 0% 10%;
+        }
+
+        .buttonbox{
+            display: block;
+            width: 18%;
+            aspect-ratio: 1 / 1;
+            margin: 1%;
+        }
+
+        .imgbox{
+            display: block;
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            height: 100%;
+            border: 1vw solid lch(89.23% 31.81 201.19);
+            outline: 0.3vw solid black;
+            border-radius: 3vw; 
+            overflow: hidden;
+            transform: scale(1);
+        }
+        
+        .imgbox:focus-visible{
+            border-image-repeat: round;
+            border-image: radial-gradient(closest-side at 1%, lch(89.23% 31.81 201.19), magenta);
+            border-image-width: 4.5vw;
+            border-image-repeat: round;
+            /*
+            border-image: radial-gradient(closest-side at 20%, magenta, lch(89.23% 31.81 201.19));
+            */
+            transform: scale(1.25);
+            transition: transform 1s ease;
+        }
+
+        .imgbox img{
+            width: 100%;
+            height: 100%;
+            border: 0.8vw solid rgb(100, 194, 184);
+            border-radius: 2vw;
+            box-sizing: border-box;
+            margin: 0 auto;
+            object-fit : cover;
+        }
+
+        .explanation{
+            position: absolute;
+            opacity: 0%;
+        }
+
+        .hoverexplanation{
+            display: block;
+            text-align: center;
+            font-size: 2cqw;
+            align-content: center;
+            position: absolute;
+            z-index: 2;
+            width: 14vw;
+            /* height: 4vh; */
+            border: 0.1vw solid black;
+            border-radius: 2vw;
+            background-color: white;
+            transition-property: opacity;
+            transition-duration: 0.5s;
+        }
+
+        #header{
+            display: none;
+            width: 100%;
+            height: 40vh;
+            background-color: aliceblue;
+            opacity: 50%;
+        }
+
+        .headcontent{
+            width: 50%;
+            text-align: center;
+            flex-direction: column;
+        }
+
+        .headcontent #main{
+            font-size: 5vw;
+            text-align: center;
+        }
+
+        .headcontent #explan{
+            padding-top: 3vh;
+        }
+
+        .headcontent #headimg{
+            border: 0.1vw solid red !important;
+            border-radius: 4vw;
+            width: 70%;
+            aspect-ratio: 1 / 1;
+            position: relative;
+            animation: bounce 0.7s infinite linear;
+        }
+
+        #footer{
+            display: flex;
+            flex-direction: row;
+            position: relative;
+            padding-top: 5vh;
+        }
+
+        #footer .footercontent{
+            display: block;
+            width: 50%;
+            height: 10vh;
+            align-content: center;
+            text-align: center;
+            border: 1px solid white;
+            border-radius: 5vw 5vw 0vw 0vw / 5vw 5vw 0vw 0vw;
+            background-color: white;
+            font-size: 3cqw;
+        }
+
+        /*세로가 가로보다 더 길 경우 vertical mode 활성화*/
+        @media (max-aspect-ratio: 1/1.1) {
+            body {
+                --vertical-mode: 1;
+            }
+        }
+        /*애니메이션*/
+        @keyframes bounce {
+            0% {
+                top: 2vh;
+                width: 70%;
+                aspect-ratio: 1 / 1;
+            }
+
+            50% {
+                top: 0;
+                width: 65%;
+                aspect-ratio: 1 / 1.05;
+            }
+
+            70% {
+                top: 4vh;
+                width: 60%;
+                aspect-ratio: 1 / 1.2;
+            }
+
+            100% {
+                top: 2vh;
+                width: 70%;
+                aspect-ratio: 1 / 1;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<body>
+    <div id="header">
+        <div class="headcontent">
+            <div id="main">
+                <B>블로그 UI의 혁신</B>
+            </div>
+            <div id="explan">
+                <p>3DS 메인 UI를 참고하여 실제 게임패드와 키보드를 이용해 동작할 수 있게 만들었다.
+                    전반적인 느낌은 8비트 느낌을 섞어 게임같은 느낌을 내도록 했으며, 좌 6개 항목은 실제 블로그 카테고리로 이용될 예정이다.
+                    그 옆 중간 6개 항목은 이력을 설명해 주는 이력 내용 및 포폴이고, 우측 3개 항목은 메일, SNS등 연락처이다
+                </p>
+            </div>
+        </div>
+        <div class="headcontent">
+            <img id="headimg" src="https://chatgpt.com/backend-api/estuary/public_content/enc/eyJpZCI6Im1fNjliOTU4NGM3MGJjODE5MWE0YWFmZTk4OGQ3YmM2ZTg6ZmlsZV8wMDAwMDAwMGIyYWM3MjA2YTNiYzU0MGYxODE1Y2IxMSIsInRzIjoiMjA1MjkiLCJwIjoicHlpIiwiY2lkIjoiMSIsInNpZyI6ImY1ZTEyNmU0ODdhOWY5YWJkNzJkZWE0ZTkyMzA4NjMwYzE2NTBmNGFmY2Q1ZWI0ZjUzM2M0YjMwNTgwMDZmNjgiLCJ2IjoiMCIsImdpem1vX2lkIjpudWxsLCJjcyI6bnVsbCwiY2RuIjpudWxsLCJjcCI6bnVsbCwibWEiOm51bGx9">
+        </div>
+    </div>
+    <div id="topmenu">
+        <ul>
+            <li>
+                <a><i class="fas fa-home"></i></a>
+            </li>
+            <li>
+                <a><i style="color:yellow;" class="fas fa-server"></i></a>
+            </li>
+            <li>
+                <a><i style="color:blue;" class="fa fa-windows"></i></a>
+            </li>
+            <li>
+                <a><i style="color: aqua;" class="fas fa-wifi"></i></a>
+            </li>
+            <li>
+                <a><i style="color:green;" class="fas fa-user"></i></a>
+            </li>
+        </ul>
+    </div>
+    <div id="content">
+        <div class="buttonbox">
+            <button class="imgbox" onclick="alert('준비중입니다');">
+                <img class="mainicon" src="img/note 8bit.png" alt="">
+            </button>
+            <a class="explanation">Diary</a>
+        </div>
+        <div class="buttonbox" onclick="window.open('https://www.instagram.com/eng.std_100')">
+            <button class="imgbox">
+                <img class="mainicon" src="img/Tripbag 8bit.png" alt="">
+            </button>
+            <a class="explanation">Trip&Travel</a>
+        </div>
+        <div class="buttonbox">
+            <button class="imgbox">
+                <img class="mainicon" src="img/Github 8bit.png" alt="">
+            </button>
+            <a class="explanation">Github</a>
+        </div>
+        <div class="buttonbox">
+            <button class="imgbox">
+                <img class="mainicon" src="img/Gamepad 8bit.png" alt="">
+            </button>
+            <a class="explanation">Games</a>
+        </div>
+        <div class="buttonbox">
+            <button class="imgbox" onclick="window.open('https://mail.google.com/mail/?view=cm&to=qorrjsdn668@daum.net')">
+                <img class="mainicon" src="img/Mail 8bit.png" alt="">
+            </button>
+            <a class="explanation">Mail</a>
+        </div>
+        <div class="buttonbox">
+            <button class="imgbox">
+                <img class="mainicon" src="img/Joystick 8bit.png" alt="">
+            </button>
+            <a class="explanation">GameReview</a>
+        </div>
+        <div class="buttonbox">
+            <button class="imgbox">
+                <img class="mainicon" src="img/Brewing 8bit.png" alt="">
+            </button>
+            <a class="explanation">Brewing</a>
+        </div>
+        <div class="buttonbox">
+            <button class="imgbox">
+                <img class="mainicon" src="img/Steam 8bit.png" alt="">
+            </button>
+            <a class="explanation">Steam</a>
+        </div>
+        <div class="buttonbox">
+            <button class="imgbox">
+                <img class="mainicon" src="img/www 8bit.png" alt="">
+            </button>
+            <a class="explanation">Webs</a>
+        </div>
+        <div class="buttonbox">
+            <button class="imgbox">
+                <img class="mainicon" src="img/Instagram 8bit.png" alt="">
+            </button>
+            <a class="explanation">Instagram</a>
+        </div>
+        <div class="buttonbox">
+            <button class="imgbox">
+                <img class="mainicon" src="img/Hammer 8bit.png" alt="">
+            </button>
+            <a class="explanation">DIY</a>
+        </div>
+        <div class="buttonbox">
+            <button class="imgbox">
+                <img class="mainicon" src="img/Neighbor 8bit.png" alt="">
+            </button>
+            <a class="explanation">Mutuals</a>
+        </div>
+        <div class="buttonbox">
+            <button class="imgbox">
+                <img class="mainicon" src="img/Notion 8bit.png" alt="">
+            </button>
+            <a class="explanation">CV</a>
+        </div>
+        <div class="buttonbox">
+            <button class="imgbox">
+                <img class="mainicon" src="img/etc. 8bit.png" alt="">
+            </button>
+            <a class="explanation">etc.dev.</a>
+        </div>
+        <div class="buttonbox">
+            <button class="imgbox">
+                <img class="mainicon" src="img/Discord 8bit.png" alt="">
+            </button>
+            <a class="explanation">Discord</a>
+        </div>
+    </div>
+    <div id="footer">
+        <a class="footercontent">
+            173번째 스타님(비로그인 상태)
+        </a>
+        <a class="footercontent">
+            로그인
+        </a>
+    </div>
+</body>
+<script>
+    //가로 세로 길이에 따라 설명창 보이게 or 안보이게
+    function updateHeader() {
+        const verticalMode = getComputedStyle(document.body)
+        .getPropertyValue('--vertical-mode')
+        .trim();
+
+        if (verticalMode === "1") {
+            document.getElementById("header").style.display = 'flex';
+        }
+        else {
+            document.getElementById("header").style.display = 'none';
+        }
+    }
+
+    updateHeader();
+    window.addEventListener("resize", updateHeader);
+    
+
+    const container = document.getElementById('content');
+    const buttons = Array.from(container.querySelectorAll('.imgbox'));
+    const explanations = Array.from(container.querySelectorAll('.explanation'));
+    
+    //마우스 hover 시에도 focus 되게 하는 함수
+    for(let j = 0; j < buttons.length; j++)
+    {
+        buttons[j].addEventListener("mouseenter", (b) => {
+            b.target.focus();
+            for(k = 0; k < buttons.length; k++)
+            {
+                explanations[k].setAttribute('class', 'explanation');
+            }
+            explanations[j].setAttribute('class', 'hoverexplanation');
+            //상단 박스의 텍스트 & 이미지 바꾸기
+            document.querySelector("#main B").textContent = explanations[j].textContent;
+            document.getElementById("headimg").src = buttons[j].querySelector(".mainicon").src;
+        });
+
+        buttons[j].addEventListener("mouseleave", (b) => {
+            document.activeElement.blur();
+            explanations[j].setAttribute('class', 'explanation');
+        });
+    }
+    window.addEventListener('keydown', (e) => {
+        let currentIdx = buttons.indexOf(document.activeElement);
+
+        // 방향키가 아니면 무시
+        const isArrow = ['ArrowRight', 'ArrowLeft', 'ArrowUp', 'ArrowDown'].includes(e.key);
+        if (!isArrow) return;
+
+        e.preventDefault(); // 방향키 기본 스크롤 방지
+
+        // 1. 포커스가 없는 경우
+        if (currentIdx === -1) {
+            buttons[0].setAttribute('tabindex', '0');
+            buttons[0].focus();
+            explanations[0].setAttribute('class', 'hoverexplanation');
+            document.querySelector("#main B").textContent = explanations[0].textContent;
+            document.getElementById("headimg").src = buttons[0].querySelector(".mainicon").src;
+            return;
+        }
+        
+        let nextIdx;
+        if (e.key === 'ArrowRight') {
+            nextIdx = (currentIdx + 1) % buttons.length; // 순환 구조
+            e.preventDefault(); // 스크롤 방지
+        } else if (e.key === 'ArrowLeft') {
+            nextIdx = (currentIdx - 1 + buttons.length) % buttons.length;
+            e.preventDefault();
+        } else if (e.key === 'ArrowDown') {
+            nextIdx = (currentIdx + 5 + buttons.length) % buttons.length;
+            e.preventDefault();
+        } else if (e.key === 'ArrowUp') {
+            nextIdx = (currentIdx - 5 + buttons.length) % buttons.length;
+            e.preventDefault();
+        }
+
+        if (nextIdx !== undefined) {
+            // tabindex 업데이트 (기존 포커스 제거, 새 포커스 설정)
+            buttons[currentIdx].setAttribute('tabindex', '-1');
+            explanations[currentIdx].setAttribute('class', 'explanation');
+            buttons[nextIdx].setAttribute('tabindex', '0');
+            explanations[nextIdx].setAttribute('class', 'hoverexplanation');
+            buttons[nextIdx].focus();
+            //상단 박스의 텍스트&이미지 바꾸기
+            document.querySelector("#main B").textContent = explanations[nextIdx].textContent;
+            document.getElementById("headimg").src = buttons[nextIdx].querySelector(".mainicon").src;
+        }
+    });
+
+    function checkFocus() {
+        setTimeout(() => {
+            if (document.activeElement === document.body) {
+                for(i = 0; i < explanations.length; i++) {
+                    explanations[i].setAttribute('class', 'explanation');
+                }
+            }
+        }, 0);
+    }
+
+    document.addEventListener("focusin", checkFocus);
+    document.addEventListener("focusout", checkFocus);
+    
+
+</script>
+</html>
